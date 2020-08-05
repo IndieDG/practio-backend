@@ -24,7 +24,7 @@ describe('/popularity', () => {
     )
 
     await request(createApp(appConfig))
-      .get('/popularity?keyword=SomeKeyWord')
+      .get('/some-user-id/popularity?keyword=SomeKeyWord')
       .expect(200, interests)
 
     expect(
@@ -44,7 +44,7 @@ describe('/popularity', () => {
     )
 
     await request(createApp(appConfig))
-      .get('/popularity?keyword=SomeKeyWord')
+      .get('/some-user-id/popularity?keyword=SomeKeyWord')
       .expect(502, {
         error: 'google-trends-api',
         detail: 'Call to Google Trends API call failed',
@@ -60,10 +60,12 @@ describe('/popularity', () => {
       }
     )
 
-    await request(createApp(appConfig)).get('/popularity').expect(400, {
-      error: `Missing: keyword`,
-      detail:
-        'The call requries the missing url to have query params that are missing',
-    })
+    await request(createApp(appConfig))
+      .get('/some-user-id/popularity')
+      .expect(400, {
+        error: `Missing: keyword`,
+        detail:
+          'The call requries the missing url to have query params that are missing',
+      })
   })
 })

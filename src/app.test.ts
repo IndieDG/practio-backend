@@ -24,7 +24,9 @@ describe('app', () => {
     }
     const app = createApp(appConfig)
 
-    const response = await request(app).get('/popularity?keyword=SomeKeyWord')
+    const response = await request(app).get(
+      '/some-user-id/popularity?keyword=SomeKeyWord'
+    )
 
     expect(response.text).toStrictEqual(JSON.stringify(interests))
   })
@@ -35,8 +37,10 @@ describe('app', () => {
     }
     const app = createApp(appConfig)
 
-    await request(app).get('/popularity?keyword=SomeKeyWord')
-    const response = await request(app).get('/popularity?keyword=SomeKeyWord')
+    await request(app).get('/some-user-id/popularity?keyword=SomeKeyWord')
+    const response = await request(app).get(
+      '/some-user-id/popularity?keyword=SomeKeyWord'
+    )
 
     expect(response.text).toStrictEqual(
       'Too many requests, please try again later.'

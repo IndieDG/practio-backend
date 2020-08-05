@@ -1,7 +1,7 @@
 import request from 'supertest'
 import { createApp } from '../app'
 
-describe('healthcheck', () => {
+describe('/ping', () => {
   it('should return pong when GET to /ping is called', async () => {
     await request(createApp()).get('/ping').expect(200, 'pong')
   })

@@ -14,7 +14,7 @@ describe('/popularity', () => {
     jest.restoreAllMocks()
   })
 
-  it('should return google-trends-api result when GET to /popularity is called', async () => {
+  it('should return google-trends-api result when GET to /:userId/popularity is called', async () => {
     const interests = { some: 'interests' }
 
     mocked(googleTrends).interestOverTime.mockImplementation(
@@ -34,7 +34,7 @@ describe('/popularity', () => {
     })
   })
 
-  it('should return error when GET to /popularity is called and google-trends-api fails', async () => {
+  it('should return error when GET to /:userId/popularity is called and google-trends-api fails', async () => {
     const interests = { some: 'interests' }
 
     mocked(googleTrends).interestOverTime.mockImplementation(
@@ -51,7 +51,7 @@ describe('/popularity', () => {
       })
   })
 
-  it('should return error when GET to /popularity is called with no keyword query', async () => {
+  it('should return error when GET to /:userId/popularity is called with no keyword query', async () => {
     const interests = { some: 'interests' }
 
     mocked(googleTrends).interestOverTime.mockImplementation(

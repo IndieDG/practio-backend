@@ -8,6 +8,9 @@ export const buildRouter = () => {
   router.get('/', async (req, res, __) => {
     const keyword = req.query.keyword
 
+    res.setHeader('Content-Type', 'application/json')
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
+
     if (!keyword) {
       res.statusCode = 400
       res.json(noKeywordError('keyword'))
@@ -16,7 +19,6 @@ export const buildRouter = () => {
         .interestOverTime({ keyword })
         .then((results: any) => {
           res.statusCode = 200
-          res.setHeader('Content-Type', 'application/json')
           res.json(results)
         })
         .catch((e: any) => {
